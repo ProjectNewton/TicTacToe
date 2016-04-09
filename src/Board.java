@@ -1,4 +1,5 @@
 import java.util.IllegalFormatException;
+import java.util.Scanner;
 
 /**
  * Created by Rohan D'Souza on 4/8/2016.
@@ -55,6 +56,17 @@ public class Board {
         return board[num1][num2] == null;
     }
 
+    /*public boolean checkRow(int row) {
+        return
+    }*/
+
+    public void setBoard(String val ,int row, int col) {
+        if(row >= board.length || col >= board[0].length) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        board[row][col] = val.toUpperCase();
+    }
+
     @Override
     public String toString() {
         String str = "\n";
@@ -75,7 +87,4 @@ public class Board {
 
         return str;
     }
-
-
-
 }
