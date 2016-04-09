@@ -55,8 +55,27 @@ public class Board {
         return board[num1][num2] == null;
     }
 
+    @Override
+    public String toString() {
+        String str = "\n";
+        System.out.print(str);
+        for (int row = 0; row<this.board.length; row++) {
+            for (int col = 0; col < this.board.length; col++) {
+                if (col==0) {
+                    str = str + row + "  ";
+                }
+                else str = str + " ";
+                str = str + (this.board[row][col]);
+                if (col < this.board[0].length - 1) str = str + (" |");
+                else str = str + "\n";
+            }
+            if (row < this.board.length - 1) str = str + ("  -----------\n");
+        }
+        str = str + ("\n   0   1   2\n\n");
+
+        return str;
+    }
 
 
 
-    
 }
