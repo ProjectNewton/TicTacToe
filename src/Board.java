@@ -5,7 +5,13 @@ import java.util.Scanner;
  * Created by Rohan D'Souza on 4/8/2016.
  */
 public class Board {
-    public String[][] board;
+    /**
+     * <p><code>board</code> is a 2 dimensional array represented in by
+     * a <code>[row][col]</code> configuration</p>
+     */
+    private String[][] board;
+    public static final String Player1 = "X";
+    public static final String Player2 = "Y";
 
     public Board() {
         this.board = null;
@@ -24,7 +30,7 @@ public class Board {
             this.board = temp;
         }
     }
-    public Board(short len) {
+    public Board(int len) {
         this.board = new String[len][len];
     }
 
@@ -56,15 +62,55 @@ public class Board {
         return board[num1][num2] == null;
     }
 
-    /*public boolean checkRow(int row) {
-        return
-    }*/
-
     public void setBoard(String val ,int row, int col) {
         if(row >= board.length || col >= board[0].length) {
             throw new ArrayIndexOutOfBoundsException();
         }
         board[row][col] = val.toUpperCase();
+    }
+
+    public boolean checkWin() {
+        for (int i = 0; i < board.length; i++){
+            if (checkHorizontal(i))
+                return true;
+            else if (checkVerticle(i))
+                return true;
+            else if (checkDiagonal())
+                return true;
+        }
+        return false;
+    }
+
+    public boolean checkHorizontal(int row) {
+        if (row >= board.length)
+            return false;
+        for (int col = 0; col < board[row].length-1; col++) {
+            if (!board[row][col].equals(board[row][col+1])) {return false;}
+        }
+        return true;
+    }
+
+    public boolean checkVerticle(int col) {
+        if (col >= board.length)
+            return false;
+        for (int row = 0; row < board.length-1; row++) {
+            if (!board[row][col].equals(board[row+1][col])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkDiagonal() {
+        for (int i = 0; i < board.length-1; i++) {
+            if (!board[i][i].equals(board[i+1][i+1]))
+                return false;
+        }
+        for (int i = board.length; i > 0; i--) {
+            if (!board[i][i].equals(board[i-1][i-1]))
+                return false;
+        }
+        return true;
     }
 
     @Override
@@ -84,7 +130,6 @@ public class Board {
             if (row < this.board.length - 1) str = str + ("  -----------\n");
         }
         str = str + ("\n   0   1   2\n\n");
-
         return str;
     }
 }
