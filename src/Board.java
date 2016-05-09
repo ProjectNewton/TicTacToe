@@ -10,8 +10,8 @@ public class Board {
      * a <code>[row][col]</code> configuration</p>
      */
     private String[][] board;
-    public static final String Player1 = "X";
-    public static final String Player2 = "Y";
+    //public static final String Player1 = "X";
+    //public static final String Player2 = "Y";
 
     public Board() {
         this.board = null;

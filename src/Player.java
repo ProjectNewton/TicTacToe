@@ -1,0 +1,5 @@
+/**
+ * Created by Rohan D'Souza on 5/8/2016.
+ */
+public interface Player {
+}
