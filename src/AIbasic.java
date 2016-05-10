@@ -6,7 +6,6 @@ public class AIbasic implements Player{
     public Board play(Board board) {
         return null;
     }
-
     @Override
     public int[] play(int[] board) {
         return new int[0];
