@@ -8,9 +8,18 @@ public class HumanPlyr implements Player{
     private String str;
     Scanner sc = new Scanner(System.in);
     public HumanPlyr(){
-        System.out.println("DO you Want to be player \"X\" or player \"Y\"");
-        System.out.println("");
-        str = sc.nextLine();
+        System.out.println("DO you Want to be player X or player Y");
+        System.out.println("(only type \"X\" or \"Y\")");
+        String string = sc.nextLine();
+        if (string.toUpperCase().equals("X") || string.toUpperCase().equals("Y"))
+            str = string;
+        else {
+            System.out.println("You screwed up on the easiest task in this game." +
+                    "congratulations you are lower than average.\n");
+            str = null;
+            throw new IllegalArgumentException();
+        }
+
 
     }
     @Override
@@ -19,11 +28,10 @@ public class HumanPlyr implements Player{
         int row = sc.nextInt();
         System.out.print("What is the column of your choice:");
         int col = sc.nextInt();
-
-        return null;
-    }
-    @Override
-    public int[] play(int[] board) {
-        return new int[0];
+        if (row >= board.getBoard().length || col >= board.getBoard()[0].length)
+            System.out.println("You inputted data that is out of Bounds. Loser");
+        else
+            return board.setBoard(str,row,col);
+        return board.clone();
     }
 }

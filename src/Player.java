@@ -3,5 +3,4 @@
  */
 public interface Player {
     Board play(Board board);
-    int[] play(int[] board);
 }

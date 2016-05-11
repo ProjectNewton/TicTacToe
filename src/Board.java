@@ -1,6 +1,3 @@
-import java.util.IllegalFormatException;
-import java.util.Scanner;
-
 /**
  * Created by Rohan D'Souza on 4/8/2016.
  */
@@ -34,6 +31,10 @@ public class Board {
         this.board = new String[len][len];
     }
 
+    public String[][] getBoard() {
+        return board;
+    }
+
     public void fill() {
         for (int boardIndex = 0; boardIndex < board.length; boardIndex++) {
             for (int board2Index = 0; board2Index < board[0].length; board2Index++) {
@@ -62,11 +63,23 @@ public class Board {
         return board[num1][num2] == null;
     }
 
-    public void setBoard(String val ,int row, int col) {
+    public void configureBoard(String val ,int row, int col) {
         if(row >= board.length || col >= board[0].length) {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new ArrayIndexOutOfBoundsException("LOL. Are you Blind, That doesnt fit.");
         }
         board[row][col] = val.toUpperCase();
+    }
+    public Board setBoard(String val , int row, int col) {
+        if(row >= board.length || col >= board[0].length) {
+            throw new ArrayIndexOutOfBoundsException("LOL. Are you Blind, That doesnt fit.");
+        }
+        board[row][col] = val.toUpperCase();
+        return new Board(board.clone());
+    }
+
+    @Override
+    public Board clone() {
+        return new Board(board.clone());
     }
 
     public boolean checkWin() {
@@ -85,6 +98,8 @@ public class Board {
         if (row >= board.length)
             return false;
         for (int col = 0; col < board[row].length-1; col++) {
+            if (board[row][col].contains(" "))
+                return false;
             if (!board[row][col].equals(board[row][col+1])) {return false;}
         }
         return true;
@@ -94,6 +109,8 @@ public class Board {
         if (col >= board.length)
             return false;
         for (int row = 0; row < board.length-1; row++) {
+            if (board[row][col].contains(" "))
+                return false;
             if (!board[row][col].equals(board[row+1][col])) {
                 return false;
             }
@@ -103,10 +120,14 @@ public class Board {
 
     public boolean checkDiagonal() {
         for (int i = 0; i < board.length-1; i++) {
+            if (board[i][i].contains(" "))
+                return false;
             if (!board[i][i].equals(board[i+1][i+1]))
                 return false;
         }
         for (int i = board.length; i > 0; i--) {
+            if (board[i][i].contains(" "))
+                return false;
             if (!board[i][i].equals(board[i-1][i-1]))
                 return false;
         }
