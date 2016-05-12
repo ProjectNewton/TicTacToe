@@ -7,6 +7,7 @@ public class Board {
      * a <code>[row][col]</code> configuration</p>
      */
     private String[][] board;
+    private String winnner;
     //public static final String Player1 = "X";
     //public static final String Player2 = "Y";
 
@@ -34,6 +35,7 @@ public class Board {
     public String[][] getBoard() {
         return board;
     }
+    public String getWinnner() {return winnner;}
 
     public void fill() {
         for (int boardIndex = 0; boardIndex < board.length; boardIndex++) {
@@ -43,9 +45,6 @@ public class Board {
         }
     }
 
-    /*public boolean isEmptyNotFilled() {
-        return board == null;
-    }*/
     public boolean isEmpty() {
         if (board == null) {
             return true;
@@ -93,6 +92,9 @@ public class Board {
         }
         return false;
     }
+    ///////THE checks are wrong... *sigh* ... the part that
+    // determines the winner is not always gonna be in the
+    // position that is currently being assigned. Shit
 
     public boolean checkHorizontal(int row) {
         if (row >= board.length)
@@ -102,6 +104,7 @@ public class Board {
                 return false;
             if (!board[row][col].equals(board[row][col+1])) {return false;}
         }
+        winnner = board[row][0];
         return true;
     }
 
@@ -115,6 +118,7 @@ public class Board {
                 return false;
             }
         }
+        winnner = board[0][col];
         return true;
     }
 
@@ -125,12 +129,13 @@ public class Board {
             if (!board[i][i].equals(board[i+1][i+1]))
                 return false;
         }
-        for (int i = board.length; i > 0; i--) {
+        for (int i = board.length-1; i > 0; i--) {
             if (board[i][i].contains(" "))
                 return false;
             if (!board[i][i].equals(board[i-1][i-1]))
                 return false;
         }
+        winnner = board[1][1];
         return true;
     }
 
