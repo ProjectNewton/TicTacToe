@@ -51,23 +51,31 @@ public class Board {
         }
         for (int boardIndex = 0; boardIndex < board.length; boardIndex++) {
             for (int board2Index = 0; board2Index < board[0].length; board2Index++) {
-                if (board[boardIndex][board2Index] == null || board[boardIndex][board2Index].equals("")
-                    || board[boardIndex][board2Index].equals(" "))
-                    return true;
+                if (!isEmpty()) return false;
             }
         }
-        return false;
+        return true;
     }
-    public boolean isEmpty(short num1, short num2) {
-        return board[num1][num2] == null;
+    public boolean isEmpty(int num1, int num2) {
+        return board[num1][num2] == null || board[num1][num2].equals("")
+                || board[num1][num2].equals(" ");
     }
 
-    public void configureBoard(String val ,int row, int col) {
+    public boolean isFull() {
+        for (short i = 0; i < board.length; i++) {
+            for (short j = 0; j < board[0].length; j++) {
+                if(isEmpty(i,j)) return false;
+            }
+        }
+        return true;
+    }
+
+    /*public void configureBoard(String val ,int row, int col) {
         if(row >= board.length || col >= board[0].length) {
             throw new ArrayIndexOutOfBoundsException("LOL. Are you Blind, That doesnt fit.");
         }
         board[row][col] = val.toUpperCase();
-    }
+    }*/
     public Board setBoard(String val , int row, int col) {
         if(row >= board.length || col >= board[0].length) {
             throw new ArrayIndexOutOfBoundsException("LOL. Are you Blind, That doesnt fit.");
@@ -81,16 +89,22 @@ public class Board {
         return new Board(board.clone());
     }
 
-    public boolean checkWin() {
+    /**
+     * @return  1 if there is a Win
+     *          -1 if there is a loss
+     *          2 is there is a tie
+     */
+    public int checkWin() {
+        if(isFull()) return 2;
         for (int i = 0; i < board.length; i++){
             if (checkHorizontal(i))
-                return true;
+                return 1;
             else if (checkVerticle(i))
-                return true;
+                return 1;
             else if (checkDiagonal())
-                return true;
+                return 1;
         }
-        return false;
+        return -1;
     }
     ///////THE checks are wrong... *sigh* ... the part that
     // determines the winner is not always gonna be in the

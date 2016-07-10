@@ -8,7 +8,7 @@ public class HumanPlyr implements Player{
     Scanner sc = new Scanner(System.in);
     public HumanPlyr(String[] strs){
         if (strs.length == 1) {
-            System.out.println("You're going to have to be player " + strs[0]);
+            System.out.println("The other person playing... Yes you... You're going to have to be player " + strs[0]);
             str = strs[0];
             strings = new String[0];
         }
@@ -57,14 +57,25 @@ public class HumanPlyr implements Player{
     @Override
     public Board play(Board board) {
         System.out.println("ITS PLAYER " + str + "'s TURN!");
+
         System.out.print("What is the row of your choice:");
         int row = sc.nextInt();
+        while (row > 2) {
+            System.out.println("That is out of bounds. Enter a valid row!!!");
+            row = sc.nextInt();
+        }
+
         System.out.print("What is the column of your choice:");
         int col = sc.nextInt();
-        if (row >= board.getBoard().length || col >= board.getBoard()[0].length)
-            System.out.println("You inputted data that is out of Bounds. Loser");
-        else
-            return board.setBoard(str,row,col);
-        return board.clone();
+        while (col > 2) {
+            System.out.println("That is out of bounds. Enter a valid column!!!");
+            col = sc.nextInt();
+        }
+
+        if (board.isEmpty(row,col)) return board.setBoard(str,row,col);
+        else{
+            System.out.println("That position is already taken... lol sorry... try to see next time!!!");
+            return play(board);
+        }
     }
 }
