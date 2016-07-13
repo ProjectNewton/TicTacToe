@@ -1,21 +1,18 @@
-import java.util.Scanner;
-
+package Players;
 /**
  * Created by Rohan D'Souza on 7/10/2016.
  */
+import java.util.Scanner;
+import Game.Board;
 public abstract class Player {
     String str;
     String[] strings;
     Scanner sc = new Scanner(System.in);
 
-    String getStr() {
-        return str;
-    }
-    String[] getStrings() {
-        return strings;
-    }
+    public String getStr() {return str;}
+    public String[] getStrings() {return strings;}
 
-    abstract Board play(Board board);
+    public abstract Board play(Board board);
 
     public String getOtherString (String[] strs) {
         if (strs.length == 2) {

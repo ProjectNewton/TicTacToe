@@ -1,6 +1,9 @@
+package Players;
 /**
  * Created by Rohan D'Souza on 5/10/2016.
  */
+import Game.Board;
+
 public class HumanPlyr extends Player {
     public HumanPlyr(String[] strs){
         if (strs.length == 1) {

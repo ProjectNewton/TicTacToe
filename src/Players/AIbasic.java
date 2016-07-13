@@ -1,6 +1,10 @@
+package Players;
+
 /**
  * Created by Rohan D'Souza on 5/10/2016.
  */
+import Game.Board;
+
 public class AIbasic extends Player {
 
     public AIbasic (String[] strs) {

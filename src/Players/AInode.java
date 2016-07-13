@@ -1,7 +1,11 @@
+package Players;
+
 /**
  * Created by Rohan D'Souza on 5/10/2016.
  */
-public class AInode extends Player{
+import Game.Board;
+
+public class AInode extends Player {
     private String[] strings;
 
     @Override

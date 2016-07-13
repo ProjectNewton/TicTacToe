@@ -1,6 +1,8 @@
+package Game;
 /**
  * Created by Rohan D'Souza on 4/8/2016.
  */
+
 public class Board {
     /**
      * <p><code>board</code> is a 2 dimensional array represented in by
