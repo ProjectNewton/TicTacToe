@@ -1,4 +1,4 @@
-package Game;
+import Game.Board;
 import Players.AIbasic;
 import Players.HumanPlyr;
 import Players.Player;
