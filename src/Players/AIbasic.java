@@ -12,7 +12,6 @@ public class AIbasic extends Player {
             System.out.println("This AI will have to be player " + strs[1]);
             str = strs[1];
             super.strings = new String[1];
-            System.out.println(getStrings().length);
             super.strings[0] = strs[0];
         }
         else if(strs.length == 1) {

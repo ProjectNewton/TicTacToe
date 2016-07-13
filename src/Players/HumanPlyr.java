@@ -8,6 +8,7 @@ public class HumanPlyr extends Player {
     public HumanPlyr(String[] strs){
         if (strs.length == 1) {
             System.out.println("The other person playing... Yes you... You're going to have to be player " + strs[0]);
+            if (strs[0] == "Y") System.out.println("SUUUCKS... no body wants to be Y");
             str = strs[0];
             super.strings = new String[0];
         }
