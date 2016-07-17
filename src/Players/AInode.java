@@ -5,11 +5,44 @@ package Players;
  */
 import Game.Board;
 
+import java.util.*;
+
 public class AInode extends Player {
-    private String[] strings;
+
+    public static class Node {
+        private Node parent;
+        private Board board;
+        private List<Node> childs;
+        public Node(Board board, Node parent, List<Node> childs) {
+            this.parent = parent;
+            this.board = board;
+            this.childs = childs;
+        }
+    }
+
+
+    public AInode (String[] strs) {
+        if (strs.length == 2) {
+            System.out.println("This AI will have to be player " + strs[1]);
+            str = strs[1];
+            super.strings = new String[1];
+            super.strings[0] = strs[0];
+        }
+        else if(strs.length == 1) {
+            System.out.println("This AI will have to be player " + strs[0]);
+            str = strs[0];
+            strings = new String[0];
+        }
+        else {
+            str = null;
+            strings = null;
+        }
+    }
 
     @Override
     public Board play(Board board) {
         return null;
     }
+
+
 }

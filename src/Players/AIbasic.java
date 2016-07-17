@@ -4,6 +4,7 @@ package Players;
  * Created by Rohan D'Souza on 5/10/2016.
  */
 import Game.Board;
+import Players.Player;
 
 public class AIbasic extends Player {
 
@@ -27,6 +28,38 @@ public class AIbasic extends Player {
 
     @Override
     public Board play(Board board) {
+        if(board.isEmpty(1,1)) {
+            return board.setBoard(getStr(),1,1);
+        }
         return null;
     }
+
+    /**
+     * The <code>CheckHorizontal</code> method is to return 1 of 5 different integers: -2, -1, 0, 1, 2
+     * <ul>
+     *     <li>
+     *         -2: The opponent has two letters in a
+     *     </li>
+     * </ul>
+     *
+     * @param board is the <code>Board</code> that is used as the board game.
+     * @return
+     */
+    public int CheckHorizontal(Board board) {
+        return 3;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

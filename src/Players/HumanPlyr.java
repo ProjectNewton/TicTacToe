@@ -3,12 +3,12 @@ package Players;
  * Created by Rohan D'Souza on 5/10/2016.
  */
 import Game.Board;
-
+import Game.Main;
 public class HumanPlyr extends Player {
     public HumanPlyr(String[] strs){
         if (strs.length == 1) {
             System.out.println("The other person playing... Yes you... You're going to have to be player " + strs[0]);
-            if (strs[0] == "Y") System.out.println("SUUUCKS... no body wants to be Y");
+            if (strs[0] == Main.PlayerO) System.out.println("SUUUCKS... no body wants to be "+Main.PlayerO);
             str = strs[0];
             super.strings = new String[0];
         }
