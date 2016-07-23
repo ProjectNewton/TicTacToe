@@ -53,7 +53,7 @@ public class Board {
         }
         for (int boardIndex = 0; boardIndex < board.length; boardIndex++) {
             for (int board2Index = 0; board2Index < board[0].length; board2Index++) {
-                if (!isEmpty()) return false;
+                if (!isEmpty(boardIndex,board2Index)) return false;
             }
         }
         return true;
@@ -62,7 +62,10 @@ public class Board {
         return board[num1][num2] == null || board[num1][num2].equals("")
                 || board[num1][num2].equals(" ");
     }
-
+    /*public static boolean isEmpty(String[][] board, int num1, int num2) {
+        return board[num1][num2] == null || board[num1][num2].equals("")
+                || board[num1][num2].equals(" ");
+    }*/
     public boolean isFull() {
         for (short i = 0; i < board.length; i++) {
             for (short j = 0; j < board[0].length; j++) {
@@ -93,7 +96,7 @@ public class Board {
 
     /**
      * @return  1 if there is a Win
-     *          -1 if there is a loss
+     *          -1 if there is a no win or tie. Does not necessarily mean a loss.
      *          2 is there is a tie
      */
     public int checkWin() {
@@ -106,11 +109,25 @@ public class Board {
             else if (checkDiagonal())
                 return 1;
         }
-        return -1;
+            return -1;
     }
     ///////THE checks are wrong... *sigh* ... the part that
     // determines the winner is not always gonna be in the
     // position that is currently being assigned. Shit
+
+    /**
+     * @param letter is the letter that is being check for a win or not.
+     * @return
+     *      <ul>
+     *          <li>Win     = AInode.WIN    = 2</li>
+     *          <li>Loss    = AInode.LOSS   = -2</li>
+     *          <li>Tie     = AInode.TIE    = 1</li>
+     *      </ul>
+     */
+    /*public int checkWin(String letter) {
+
+    }*/
+
 
     public boolean checkHorizontal(int row) {
         if (row >= board.length)

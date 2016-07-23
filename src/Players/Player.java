@@ -3,7 +3,7 @@ package Players;
  * Created by Rohan D'Souza on 7/10/2016.
  */
 import java.util.Scanner;
-import Game.Board;
+import Game.*;
 public abstract class Player {
     String str;
     String[] strings;
@@ -14,14 +14,10 @@ public abstract class Player {
 
     public abstract Board play(Board board);
 
-    public String getOtherString (String[] strs) {
-        if (strs.length == 2) {
-            if (strs[0].equals(str)) {
-                return strs[1];
-            }
-            else if (strs[1].equals(str))
-                return strs[0];
+    public String getOtherString(String[] strs) {
+        if (str.equals(Main.PlayerX)) {
+            return Main.PlayerO;
         }
-        return null;
+        return Main.PlayerX;
     }
 }

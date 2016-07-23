@@ -4,6 +4,8 @@ import Game.Board;
 import Players.AIbasic;
 import Players.HumanPlyr;
 import Players.Player;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -37,5 +39,13 @@ public class Main {
         }
         if (win == 2) System.out.println("ITS A TIE... YOU BOTH SUUUUCK!!!");
         else System.out.println("Player " + board.getWinnner() + " wiiinssss!!");
+    }
+
+    public static String getOtherStr (String str) {
+        if (str.equals(PlayerO))
+            return PlayerX;
+        else if (str.equals(PlayerX))
+            return PlayerO;
+        throw new InputMismatchException();
     }
 }
