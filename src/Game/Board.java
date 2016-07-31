@@ -90,7 +90,8 @@ public class Board {
     }
 
     @Override
-    public Board clone() {
+    public Board clone() throws CloneNotSupportedException {
+        super.clone();
         return new Board(board.clone());
     }
 
@@ -106,9 +107,10 @@ public class Board {
                 return 1;
             else if (checkVerticle(i))
                 return 1;
-            else if (checkDiagonal())
-                return 1;
         }
+            if (checkDiagonal()) {
+                return 1;
+            }
             return -1;
     }
     ///////THE checks are wrong... *sigh* ... the part that
@@ -127,9 +129,7 @@ public class Board {
     /*public int checkWin(String letter) {
 
     }*/
-
-
-    public boolean checkHorizontal(int row) {
+    private boolean checkHorizontal(int row) {
         if (row >= board.length)
             return false;
         for (int col = 0; col < board[row].length-1; col++) {
@@ -141,7 +141,7 @@ public class Board {
         return true;
     }
 
-    public boolean checkVerticle(int col) {
+    private boolean checkVerticle(int col) {
         if (col >= board.length)
             return false;
         for (int row = 0; row < board.length-1; row++) {
@@ -155,21 +155,33 @@ public class Board {
         return true;
     }
 
-    public boolean checkDiagonal() {
+    private boolean checkDiagonal() {
+        boolean first = true;
+        boolean second = true;
         for (int i = 0; i < board.length-1; i++) {
-            if (board[i][i].contains(" "))
-                return false;
-            if (!board[i][i].equals(board[i+1][i+1]))
-                return false;
+            if (board[i][i].contains(" ")) {
+                System.out.println("checking Diagnol (" + i + ", " + i + ").");
+                first = false;
+                break;
+            }
+            if (!board[i][i].equals(board[i+1][i+1])) {
+                System.out.println("checking Diagnol (" + i + ", " + i + ").");
+                first = false;
+            }
         }
+        int j = 0;
         for (int i = board.length-1; i > 0; i--) {
-            if (board[i][i].contains(" "))
-                return false;
-            if (!board[i][i].equals(board[i-1][i-1]))
-                return false;
+            if (board[j][i].contains(" ")) {
+                second =  false;
+                break;
+            }
+            if (!board[j][i].equals(board[j+1][i-1])) {
+                second =  false;
+            }
+            j++;
         }
         winnner = board[1][1];
-        return true;
+        return first || second;
     }
 
     @Override
