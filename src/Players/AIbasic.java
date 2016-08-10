@@ -5,19 +5,52 @@ package Players;
  */
 import Game.Board;
 
+import java.util.Calendar;
+
 public class AIbasic extends Player {
 
     private class Basic {
-        private int numb, coor;
+        private int numb;
         private String letter;
-        Basic(int numb, String letter, int col) {
+        private int row, col;
+        /**
+         * @param numb is the number of times that the <code>letter</code> appears.
+         * @param letter is the <code>String</code> that appears the most.
+         * @param row <ul><li>The specific row that the <code>AIBasic</code> chose
+         *            for its turn.</li><li>-1: there is no row that <code>AIBasic</code> can choose.</li></ul>
+         * @param col <ul><li>The specific col that the <code>AIBasic</code> chose
+         *            for its turn.</li><li>-1: there is no col that <code>AIBasic</code> can choose.</li></ul>
+         */
+        Basic(int numb, String letter, int row, int col) {
             this.numb = numb;
             this.letter = letter;
-            this.coor = col;
+            this.row = row;
+            this.col = col;
         }
         int getNumb() {return numb;}
         String getLetter() {return letter;}
-        int getCoor() {return coor;}
+        int getRow() {return row;}
+        int getCol() {return col;}
+
+        public void setNumb(int numb) {
+            this.numb = numb;
+        }
+
+        public void setLetter(String letter) {
+            this.letter = letter;
+        }
+
+        public void setRow(int row) {
+            this.row = row;
+        }
+
+        public void setCol(int col) {
+            this.col = col;
+        }
+
+        private boolean checkBasicCoor () {
+            return getRow() > -1 && getCol() > -1;
+        }
     }
 
     public AIbasic (String[] strs) {
@@ -43,27 +76,27 @@ public class AIbasic extends Player {
         if (board.isEmpty(1,1) || board.isEmpty()) {
             return board.setBoard(getStr(),1,1);
         }
-        Basic temp = null;
+        /*Basic temp = null;
         for (int i = 0; i < board.getBoard().length; i++) {
             temp = checkRow(board, i);
-            if (temp.getLetter().equals(getStr()) && temp.getNumb() == 2 && temp.getCoor()>-1) {
-                return board.setBoard(getStr(), i, temp.getCoor());
-            } else if ((!temp.getLetter().equals(getStr()) && temp.getNumb() == 2)  && temp.getCoor()>-1) {
-                return board.setBoard(getStr(), i, temp.getCoor());
+            if (temp.getLetter().equals(getStr()) && temp.getNumb() == 2 && temp.checkBasicCoor()) {
+                return board.setBoard(getStr(), temp.getRow(), temp.getCol());
+            } else if ((!temp.getLetter().equals(getStr()) && temp.getNumb() == 2)  && temp.checkBasicCoor()) {
+                return board.setBoard(getStr(), temp.getRow(), temp.getCol());
             }
         }
         for (int i = 0; i < board.getBoard().length; i++) {
             temp = checkCol(board, i);
-            if (temp.getLetter().equals(getStr()) && temp.getNumb() == 2 && temp.getCoor()>-1) {
-                return board.setBoard(getStr(), temp.getCoor(), i);
-            } else if ((!temp.getLetter().equals(getStr()) && temp.getNumb() == 2)  && temp.getCoor()>-1) {
-                return board.setBoard(getStr(), temp.getCoor(), i);
+            if (temp.getLetter().equals(getStr()) && temp.getNumb() == 2 && temp.checkBasicCoor()) {
+                return board.setBoard(getStr(), temp.getRow(), temp.getCol());
+            } else if ((!temp.getLetter().equals(getStr()) && temp.getNumb() == 2)  && temp.checkBasicCoor()) {
+                return board.setBoard(getStr(), temp.getRow(), temp.getCol());
             }
-        }
+        }*/
         return null;
     }
 
-    private Basic checkRow(Board thing, int row) {
+    /*private Basic checkRow(Board thing, int row) {
         String[][] board = thing.getBoard();
         int num = 0;
         String str = "";
@@ -85,7 +118,7 @@ public class AIbasic extends Player {
                 col = getCol(board[row], str);
             }
         }
-        return new Basic(num, str, col);
+        return new Basic(num, str, row, col);
     }
 
     private static int getCol(String[] strs, String letter) {
@@ -119,7 +152,7 @@ public class AIbasic extends Player {
                 row = getRow(board, col, str);
             }
         }
-        return new Basic(num, str, row);
+        return new Basic(num, str, row, col);
     }
 
     private static int getRow(String[][] board, int col, String letter) {
@@ -130,4 +163,35 @@ public class AIbasic extends Player {
         }
         return -1;
     }
+
+    private Basic checkDiag (Board thing) {
+        Basic basic1 = new Basic(0, "", -1, -1);
+        Basic basic2 = new Basic(0, "", -1, -1);
+        String str = "";
+        String[][] board = thing.getBoard();
+        String[][] diagonals = new String[2][board.length];
+        for (int i = 0; i < board.length; i++) {
+            diagonals[0][i] = board[i][i];
+            diagonals[1][i] = board[board.length-(i+1)][i];
+        }
+        for (int i = 0; i < diagonals[0].length; i++) {
+            Basic temp0 = new Basic(0,null,-1,-1);
+            Basic temp1 = new Basic(0,null,-1,-1);
+            for (int j = 0; j < diagonals[0].length; j++) {
+                if (diagonals[0][i].equals(diagonals[0][j])) {
+                    temp0.setLetter(diagonals[0][i]);
+                    temp0.setNumb(temp0.getNumb() + 1);
+                }
+                if (diagonals[1][i].equals(diagonals[1][j])) {
+                    tempNum1++;
+                }
+            }
+            if (tempNum0 > num0) {
+                num0 = tempNum0;
+            }
+            if (tempNum1 > num1) {
+                num1 = tempNum1;
+            }
+        }
+    }*/
 }
