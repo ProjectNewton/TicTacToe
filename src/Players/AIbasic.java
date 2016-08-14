@@ -89,45 +89,6 @@ public class AIbasic extends Player {
         return -1;
     }
 
-    public static int checkRowInnerLoop(String[][] board, int row, int i) {
-        int temp = 0;
-        for (int j = 0; j < board.length; j++) {
-            if (board[row][i].equals(board[row][j])) {
-                temp += 1;
-            }
-        }
-        return temp;
-    }
-
-    public static int checkRowOuterLoop(String[][] board, int row) {
-        int num = 0;
-        for (int i = 0; i < board.length; i++) {
-            int temp = 0;
-            String tempStr = null;
-            for (int j = 0; j < board.length; j++) {
-                if (board[row][i].equals(board[row][j])) {
-                    tempStr = board[row][i];
-                    temp += 1;
-                }
-            }
-            if (temp > num) {
-                num = temp;
-            }
-        }
-        return num;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
