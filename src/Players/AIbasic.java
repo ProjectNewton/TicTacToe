@@ -5,7 +5,7 @@ package Players;
  */
 import Game.Board;
 
-import java.util.Calendar;
+import java.util.*;
 
 public class AIbasic extends Player {
 
@@ -96,7 +96,45 @@ public class AIbasic extends Player {
         return null;
     }
 
-    /*private Basic checkRow(Board thing, int row) {
+    List getHorizontalStrs (String[][] board) {
+        ArrayList<String[]> setOfHorz = new ArrayList<String[]>(board.length);
+        Collections.addAll(setOfHorz, board);
+        return setOfHorz;
+    }
+    List getVerticalStrs (String[][] board) {
+        ArrayList<String[]> setOfVerts = new ArrayList<String[]>(board.length);
+        String[] str1 = new String[board.length];
+        String[] str2 = new String[board.length];
+        String[] str3 = new String[board.length];
+        for (String[] strs : board) {
+            str1[0] = strs[0]; str2[1] = strs[1]; str3[2] = strs[2];
+        }
+        setOfVerts.add(str1);
+        setOfVerts.add(str2);
+        setOfVerts.add(str3);
+        return setOfVerts;
+    }
+    List getDiagonalStrs (String[][] board) {
+        ArrayList<String[]> setOfVerts = new ArrayList<String[]>(board.length);
+
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board.length; col++) {
+                
+            }
+        }
+    }
+
+    /*
+            if else public static private protected class interface new this super do while continue break int short long boolean goto for final float return null void 
+        if else public static private protected class interface new this super do while continue break int short long boolean goto for final float return null void 
+        if else public static private protected class interface new this super do while continue break int short long boolean goto for final float return null void 
+        if else public static private protected class interface new this super do while continue break int short long boolean goto for final float return null void 
+        if else public static private protected class interface new this super do while continue break int short long boolean goto for final float return null void 
+        if else public static private protected class interface new this super do while continue break int short long boolean goto for final float return null void 
+        if else public static private protected class interface new this super do while continue break int short long boolean goto for final float return null void 
+        if else public static private protected class interface new this super do while continue break int short long boolean goto for final float return null void 
+
+    private Basic checkRow(Board thing, int row) {
         String[][] board = thing.getBoard();
         int num = 0;
         String str = "";
